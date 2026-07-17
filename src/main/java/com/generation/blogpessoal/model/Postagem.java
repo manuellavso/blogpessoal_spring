@@ -16,8 +16,9 @@ import jakarta.validation.constraints.Size;
 //CREATE TABLE tb_postagens();
 @Entity //CRIA UMA TABELA
 @Table(name = "tb_postagens") //DEFINE NOME DA TABELA
-public class Postagem {
+public class Postagem {//MODEL
 
+	//CONSTRAINTS
 	@Id // PRIMARY KEY
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //AUTO_INCREMENT
 	private Long id;

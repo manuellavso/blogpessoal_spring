@@ -1,10 +1,18 @@
 package com.generation.blogpessoal.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.generation.blogpessoal.model.Postagem;
 
 public interface PostagemRepository extends JpaRepository<Postagem, Long>{
-//Herdei JpaRepository (contém os métodos padrões) 
-//Nos <> passo a tipagem da Model e tipo de dado guardado na chave primária
+/*Herdei JpaRepository (contém os métodos padrões) 
+Nos <> passo a tipagem da Model e tipo de dado guardado na chave primária*/
+
+	
+	public List<Postagem> findAllByTituloContainingIgnoreCase(String titulo);
+	
+	//SELECT * FROM tb_postagens WHERE titulo LIKE "%?%";
+	
 }
