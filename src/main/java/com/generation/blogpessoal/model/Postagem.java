@@ -4,11 +4,14 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -38,6 +41,11 @@ public class Postagem {//MODEL
 	@UpdateTimestamp //ATUALIZA A DATA E A HORA NA CRIAÇÃO E ATUALIZAÇÃO DA POSTAGEM
 	private LocalDateTime data;
 
+	//OBJETO DA CLASSE TEMA
+	@ManyToOne //FOREIGN KEY
+	@JsonIgnoreProperties("postagem") //PARA NÃO TER UM LOOP - ao desserializar, ignora a postagem
+	private Tema tema;
+	
 	
 	//Getters and Setters
 	public Long getId() {
@@ -66,6 +74,14 @@ public class Postagem {//MODEL
 	}
 	public void setData(LocalDateTime data) {
 		this.data = data;
+	}
+	
+	
+	public Tema getTema() {
+		return tema;
+	}
+	public void setTema(Tema tema) {
+		this.tema = tema;
 	}
 	
 	

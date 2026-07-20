@@ -20,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.generation.blogpessoal.model.Postagem;
 import com.generation.blogpessoal.repository.PostagemRepository;
+import com.generation.blogpessoal.repository.TemaRepository;
 
 import jakarta.validation.Valid;
 
@@ -32,6 +33,10 @@ public class PostagemController {
 	//AUTOWIRED INDICA "USA ISSO AQUI COMO UM BEAN"
 	@Autowired //TRAZ MÉTODOS PARA INTERAGIR COM BANCO DE DADOS > Indica que se trata de Injeção de Dependência
 	private PostagemRepository postagemRepository;
+	
+	@Autowired
+	private TemaRepository temaRepository;
+	
 	
 	//MÉTODO GET
 	//LISTAR TUDO
@@ -67,14 +72,19 @@ public class PostagemController {
 	public ResponseEntity<Postagem> post(@Valid @RequestBody Postagem postagem){ 
 		//VALID = VÁLIDA OS DADOS (PARÂMETRO MODEL)  & REQUESTBODY = MANDA UM JSON DENTRO DA REQUISIÇÃO (body)
 		//Pega o JSON enviado no corpo da requisição e o transforma em um objeto Postagem.
-		
-		return ResponseEntity.status(HttpStatus.CREATED).body(postagemRepository.save(postagem));
+		if (temaRepository.existsById(postagem.getTema().getId())){
+			
+			postagem.setId(null); //influencia no frontend
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(postagemRepository.save(postagem));
 		/*VOU MANDAR TÍTULO E TEXTO E DEVOLVER COMO RESPOSTA: ID, DATAEHORA, TITULO E TEXTO.
 		SAVE É O INSERT - Depois dele, o banco gera o ID e a DATAEHORA.
 		O CREATED > Define que a resposta terá o status 201 Created
 		
 		INSERT INTO tb_postagens(titulo, texto) VALUES (?, ?);*/
+		}
 		
+		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O tema não existe!", null); //ERRO 400
 	}
 	
 	
@@ -83,11 +93,19 @@ public class PostagemController {
 	@PutMapping
 	public ResponseEntity<Postagem> put(@Valid @RequestBody Postagem postagem){ 
 		
-		if(postagemRepository.existsById(postagem.getId()))
-			return ResponseEntity.ok(postagemRepository.save(postagem));
-		//UPDATE tb_postagens SET titulo = ?, texto = ? WHERE id = ?;
+		if(postagemRepository.existsById(postagem.getId())) {
+			
+			if (temaRepository.existsById(postagem.getTema().getId())){
+				return ResponseEntity.ok(postagemRepository.save(postagem));
+				//UPDATE tb_postagens SET titulo = "?", texto = "?" WHERE id = ?;
+			}
+			
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O tema não existe!", null); //ERRO 400
+
+		}	
 		
 		return ResponseEntity.notFound().build();
+		
 	}
 	
 	
