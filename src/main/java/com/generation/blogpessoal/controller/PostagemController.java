@@ -49,7 +49,7 @@ public class PostagemController {
 				.map(resposta  -> ResponseEntity.ok(resposta)) //GUARDA A RESPOSTA NA "RESPOSTA", SE TIVER ALGO ELE DEVOLVE 'OK' (200)
 				.orElse(ResponseEntity.notFound().build()); //SE NÃO ACHAR NADA (NULL) DEVOLVE UM 'NOTFOUND' 404 - ESSA RESPOSTA É CONSTRUÍDA PELO BUILD
 	
-		//SELECT * FROM tb_postagem WHERE id = ?;
+		//SELECT * FROM tb_postagens WHERE id = ?;
 	}
 	
 	//PESQUISA POR TÍTULO
