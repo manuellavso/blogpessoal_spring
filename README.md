@@ -44,19 +44,15 @@ O **Diagrama de Classes** é um modelo visual usado na programação orientada a
 
 Esse diagrama ajuda a planejar e entender a arquitetura do sistema, mostrando como as entidades interagem e se conectam. É amplamente utilizado nas fases de design e documentação de projetos.
 
+<p align="center">   <img src="https://i.imgur.com/Il7ha6o.png" alt="Diagrama de Classes" width="300"/> </p>
 
 
-<iframe title="File display" role="presentation" class="render-viewer" sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" src="https://viewscreen.githubusercontent.com/markdown/mermaid?docs_host=https%3A%2F%2Fdocs.github.com&amp;color_mode=light#79086874-1581-4102-9e80-bc890077e849" name="79086874-1581-4102-9e80-bc890077e849" data-content="{&quot;data&quot;:&quot;classDiagram\nclass Postagem {\n  - id : Long\n  - titulo : String\n  - texto : String\n  - data : LocalDateTime\n  - tema : Tema\n  - usuario : Usuario\n}\nclass Tema {\n  - id : Long\n  - descricao : String\n  - postagens : List&amp;lt;Postagem&amp;gt;\n}\nclass Usuario {\n  - id : Long\n  - nome : String\n  - usuario : String\n  - senha : String\n  - foto : String\n  - postagens : List&amp;lt;Postagem&amp;gt;\n}\nTema \&quot;1\&quot; --&amp;gt; \&quot;0..*\&quot; Postagem : classifica\nUsuario \&quot;1\&quot; --&amp;gt; \&quot;0..*\&quot; Postagem : cria\n\n&quot;}" style="box-sizing: border-box; border: 0px; width: 587px; height: 570px; display: block;"></iframe>
 
 ## 4. Diagrama Entidade-Relacionamento (DER)
 
-
-
 O **DER (Diagrama Entidade-Relacionamento)** do projeto **Blog Pessoal** representa de forma visual como os dados estão organizados no banco de dados relacional e como as entidades se relacionam entre si.
 
-
-
-<iframe title="File display" role="presentation" class="render-viewer" sandbox="allow-scripts allow-same-origin allow-top-navigation allow-popups" src="https://viewscreen.githubusercontent.com/markdown/mermaid?docs_host=https%3A%2F%2Fdocs.github.com&amp;color_mode=light#5b0aace5-d056-4e8d-a920-3231dc15a7c4" name="5b0aace5-d056-4e8d-a920-3231dc15a7c4" data-content="{&quot;data&quot;:&quot;erDiagram\n    tb_usuarios ||--o{ tb_postagens : escreve\n    tb_temas ||--o{ tb_postagens : classifica\n    tb_usuarios {\n        bigint id PK\n        varchar(255) nome\n        varchar(255) usuario\n        varchar(255) senha\n        varchar(5000) foto\n    }\n    tb_temas {\n        bigint id PK\n        varchar(255) descricao\n    }\n    tb_postagens {\n        bigint id PK\n        varchar(255) titulo\n        varchar(255) texto\n        datetime data\n        bigint tema_id FK\n        bigint usuario_id FK\n    }\n&quot;}" style="box-sizing: border-box; border: 0px; width: 587px; height: 606.156px; display: block;"></iframe>
+<p align="center">   <img src="https://i.imgur.com/ibHrCgC.png" alt="Diagrama do Banco de Dados" width="500"/> </p>
 
 ## 5. Tecnologias utilizadas
 
@@ -93,10 +89,10 @@ Para executar os códigos localmente, você precisará:
 
 
 
-1. Clone o repositório do Projeto [Blog Pessoal](https://github.com/rafaelq80/blogpessoal_spring_t82) dentro da pasta do *Workspace* do STS
+1. Clone o repositório do Projeto [Blog Pessoal](https://github.com/manuellavso/blogpessoal_spring) dentro da pasta do *Workspace* do STS
 
 ```
-git clone https://github.com/rafaelq80/blogpessoal_spring_t85.git
+git clone https://github.com/manuellavso/blogpessoal_spring.git
 ```
 
 
@@ -177,5 +173,5 @@ Este repositório é parte de um projeto educacional, mas contribuições são s
 
 
 
-Desenvolvido por [**Manuella Oliveira**]([manuellavso (Manuella Oliveira)](https://github.com/manuellavso)) Para dúvidas, sugestões ou colaborações, entre em contato via GitHub ou abra uma issue!
+Desenvolvido por [**Manuella Oliveira**](https://github.com/manuellavso) Para dúvidas, sugestões ou colaborações, entre em contato via GitHub ou abra uma issue!
 
