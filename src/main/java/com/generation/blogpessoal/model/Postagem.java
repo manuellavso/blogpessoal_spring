@@ -46,6 +46,11 @@ public class Postagem {//MODEL
 	@JsonIgnoreProperties("postagem") //PARA NÃO TER UM LOOP - ao desserializar, ignora a postagem
 	private Tema tema;
 	
+	//OBJETO DA CLASSE USUARIO
+	@ManyToOne //FOREIGN KEY
+	@JsonIgnoreProperties("postagem") //PARA NÃO TER UM LOOP
+	private Usuario usuario;
+	
 	
 	//Getters and Setters
 	public Long getId() {
@@ -82,6 +87,14 @@ public class Postagem {//MODEL
 	}
 	public void setTema(Tema tema) {
 		this.tema = tema;
+	}
+	
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	
