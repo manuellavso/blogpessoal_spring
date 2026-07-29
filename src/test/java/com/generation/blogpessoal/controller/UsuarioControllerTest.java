@@ -174,7 +174,7 @@ public class UsuarioControllerTest {
 		String token = JwtHelper.obterToken(testRestTemplate, USUARIO, SENHA);
 			
 		//Heather requisition
-		HttpEntity<Void> cabeçalhoRequisicao = JwtHelper.criarRequisicaoComToken(token);
+		HttpEntity<Void> cabeçalhoRequisicao = JwtHelper.criarRequisicaoComToken(token); //Void pois é uma consulta
 				
 		//Send the requisition
 		ResponseEntity<Usuario> resposta = testRestTemplate.exchange(BASE_URL + "/" + usuarioCriado.get().getId(), HttpMethod.GET, cabeçalhoRequisicao, Usuario.class); //Peguei o id e coloquei na URL, após a /
